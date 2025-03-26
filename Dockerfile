@@ -6,8 +6,7 @@ COPY src/hello.go .
 
 RUN go mod init first/hello
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o hello
-
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o hello hello.go
 
 FROM scratch AS release-stage
 
